@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:murad/core/config/margins.dart';
@@ -19,7 +20,7 @@ class ExperienceRow extends StatelessWidget {
           ? Row(
               children: [
                 Text(
-                  experience.position,
+                  experience.position.tr(),
                   style: TextStyle(
                     fontSize: textTheme.bodyLarge?.fontSize,
                     fontWeight: FontWeight.bold,
@@ -27,7 +28,7 @@ class ExperienceRow extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    " — ${experience.company}",
+                    " — ${experience.company.tr()}",
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -52,7 +53,7 @@ class ExperienceRow extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  experience.position,
+                  experience.position.tr(),
                   style: TextStyle(
                     fontSize: textTheme.bodyLarge?.fontSize,
                     fontWeight: FontWeight.bold,
@@ -85,7 +86,7 @@ class ExperienceRow extends StatelessWidget {
 
         children: [
           Text(
-            experience.position,
+            experience.position.tr(),
             style: TextStyle(
               fontSize: textTheme.bodyLarge?.fontSize,
               fontWeight: FontWeight.bold,
@@ -93,7 +94,7 @@ class ExperienceRow extends StatelessWidget {
           ),
           4.h.ph,
           Text(
-            experience.company,
+            experience.company.tr(),
             style: TextStyle(
               fontSize: textTheme.bodyLarge?.fontSize,
               color: theme.colorScheme.onSecondary,
@@ -101,7 +102,7 @@ class ExperienceRow extends StatelessWidget {
           ),
           8.h.ph,
           Text(
-            experience.description,
+            experience.description.tr(),
             style: TextStyle(fontSize: textTheme.bodyLarge?.fontSize),
           ),
         ],

@@ -49,7 +49,7 @@ class ProjectRow extends StatelessWidget {
           ),
           4.h.ph,
           Text(
-            project.shortDescription,
+            project.shortDescription.tr(),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -72,13 +72,27 @@ class ProjectRow extends StatelessWidget {
             ),
           ),
           Text(
-            project.longDescription,
+            project.longDescription.tr(),
             style: TextStyle(
               fontSize: textTheme.bodyLarge?.fontSize,
               color: theme.colorScheme.onSecondary,
             ),
           ),
-          if (project.preview != null) project.preview!,
+          if (project.preview != null)
+            Container(
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: SizedBox(
+                  width: 960,
+                  height: 740,
+                  child: project.preview!,
+                ),
+              ),
+            ),
         ],
       ),
     );

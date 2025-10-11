@@ -45,7 +45,9 @@ class _OverlayEffectState extends State<OverlayEffect> {
         final isEnglish = context.locale == Locale('en');
         final size = MediaQuery.sizeOf(context);
         return Positioned(
-          right: isEnglish ? null : size.width - left + widget.horizontalOffset*2,
+          right: isEnglish
+              ? null
+              : size.width - left + widget.horizontalOffset * 2,
           left: isEnglish ? left : null,
           bottom: size.height - top,
 
@@ -56,8 +58,9 @@ class _OverlayEffectState extends State<OverlayEffect> {
             clipBehavior: Clip.antiAlias,
             child: Container(
               padding: EdgeInsets.all(12),
+              clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
-                color: theme.scaffoldBackgroundColor,
+                color: theme.colorScheme.inversePrimary,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                   color: theme.colorScheme.onPrimary.withAlpha(

@@ -55,6 +55,7 @@ class _LiftEffectState extends State<LiftEffect> {
         child: MaterialButton(
           onPressed: widget.onPressed,
           highlightColor: Colors.transparent,
+          padding: EdgeInsets.zero,
           elevation: elevation,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),

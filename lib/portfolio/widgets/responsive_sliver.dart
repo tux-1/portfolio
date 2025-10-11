@@ -18,9 +18,9 @@ class _CustomSliverState extends State<CustomSliver> {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     if (size.width > ResponsiveConfig.mobileBreakpoint &&
-        horizontalPadding != 54) {
+        horizontalPadding != 64) {
       setState(() {
-        horizontalPadding = 54;
+        horizontalPadding = 64;
       });
     }
     if (size.width < ResponsiveConfig.mobileBreakpoint &&

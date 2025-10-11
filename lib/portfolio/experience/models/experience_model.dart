@@ -1,3 +1,5 @@
+
+
 class ExperienceModel {
   final String position;
   final String company;
@@ -14,18 +16,18 @@ class ExperienceModel {
 
 final List<ExperienceModel> experiences = [
   ExperienceModel(
-    position: 'Flutter Developer',
-    company: 'Amwal Egy',
+    position: 'Flutter Developer', 
+    company: 'Amwal Egy', 
     description:
-        'Built and maintained two cross platform applications. Introduced unit testing and resolved 94+ critical legacy bugs to ensure stable delivery.',
-    fromTo: 'Mar. 2025 — Present',
+        'Built and maintained two cross platform applications. Introduced unit testing and resolved 94+ critical legacy bugs to ensure stable delivery.', 
+    fromTo: 'Mar. 2025 — Present', 
   ),
 
   ExperienceModel(
-    position: 'Full Stack Mobile Developer',
-    company: 'Freelance',
+    position: 'Full Stack Mobile Developer', 
+    company: 'Freelance', 
     description:
-        'Successfully delivered over 5 fully functional mobile applications with 100% client satisfaction.',
+        'Successfully delivered over 5 fully functional mobile applications with 100% client satisfaction.', 
     fromTo: 'Jan. 2024 — Sep. 2025',
   ),
 ];

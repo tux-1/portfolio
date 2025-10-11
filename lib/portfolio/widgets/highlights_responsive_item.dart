@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:murad/core/config/margins.dart';
 import 'package:murad/core/config/responsive_config.dart';
 
@@ -21,20 +22,24 @@ class HighlightsResponsiveItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Flexible(flex: 4, child: first),
-              Spacer(),
-
-              Align(alignment: AlignmentDirectional.bottomEnd, child: second),
+              16.w.pw,
+              Flexible(
+                flex: 2,
+                child: SizedBox(
+                  height: 250,
+                  child: Align(
+                    alignment: AlignmentDirectional.bottomEnd,
+                    child: second,
+                  ),
+                ),
+              ),
             ],
           );
         } else {
           return Column(
             mainAxisAlignment: MainAxisAlignment.start,
 
-            children: [
-              first,
-              12.ph,
-              Align(alignment: AlignmentDirectional.bottomEnd, child: second),
-            ],
+            children: [first, 16.ph, second],
           );
         }
       },

@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
         content: CustomScrollView(
           controller: scrollController,
           scrollBehavior: CupertinoScrollBehavior(),
-          
+
           slivers: [
             SliverAppBar(
               floating: true,
@@ -154,16 +154,6 @@ class _HomePageState extends State<HomePage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    TextSpan(
-                      text: ' — applications preview in Github repo!'.tr(),
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: textTheme.bodyLarge?.color?.withAlpha(
-                          (255 * 0.55).floor(),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -183,20 +173,19 @@ class _HomePageState extends State<HomePage> {
                         Text('EasyAttend', style: textTheme.bodyLarge),
                         12.ph,
                         Text(
-                          'A mobile application designed to simplify attendance tracking for hosts and attendees. The app enables hosts to generate a unique QR code for a specific event, which attendees can then scan to register their presence. This provides a secure, real-time, and two-factor registration system.',
+                          'A mobile application designed to simplify attendance tracking for hosts and attendees. The app enables hosts to generate a unique QR code for a specific event, which attendees can then scan to register their presence. This provides a secure, real-time, and two-factor registration system.'
+                              .tr(),
                           style: textTheme.bodyMedium,
                         ),
                       ],
                     ),
-                    second: DecoratedBox(
+                    second: Container(
+                      clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
-                        color: Colors.black45,
                       ),
                       child: Image.asset(
-                        'assets/images/easy-attend-logo.png',
-                        height: 100,
-                        width: 100,
+                        'assets/images/easyattend.jpg',
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -219,16 +208,21 @@ class _HomePageState extends State<HomePage> {
                         Text('OnMyWay', style: textTheme.bodyLarge),
                         12.ph,
                         Text(
-                          'On My Way is an e-commerce application with a combined focus on ride-hailing and ordering food/groceries. It aims to provide a platform where users can book rides, order meals from restaurants, and purchase groceries, all within a single app.',
+                          'An e-commerce application with a combined focus on ride-hailing and ordering food/groceries. It aims to provide a platform where users can book rides, order meals from restaurants, and purchase groceries, all within a single app.'
+                              .tr(),
                           style: textTheme.bodyMedium,
                         ),
                       ],
                     ),
-                    second: Image.asset(
-                      'assets/images/onmyway-logo.png',
-                      height: 100,
-                      width: 100,
-                      fit: BoxFit.contain,
+                    second: Container(
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Image.asset(
+                        'assets/images/onmyway.png',
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
                 ),
