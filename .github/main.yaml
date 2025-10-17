@@ -1,0 +1,49 @@
+name: Flutter Web CI/CD Deployment
+
+# Triggers the workflow on pushes to the main branch
+on:
+  push:
+    branches:
+      - main
+  # Allows manual triggering from the GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Set up the Flutter environment
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          # Optional: Use the official Flutter cache to speed up subsequent runs
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 1. Build the Flutter Web App
+      - name: Build Web Release
+        run: |
+          flutter build web --release \
+          --base-href /portfolio/ \
+          --web-renderer html
+        # IMPORTANT: Change /portfolio/ to your actual repository name!
+        # Using --web-renderer html is more compatible, but you can change it to 'canvaskit' 
+        # if you prefer performance over broad compatibility.
+        
+      # 2. Deploy the built files to the gh-pages branch
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # Token provided automatically by GitHub
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # The directory where the Flutter build command placed the output
+          publish_dir: ./build/web
+          # Publish to the 'gh-pages' branch
+          publish_branch: gh-pages
