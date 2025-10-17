@@ -35,9 +35,7 @@ jobs:
 
       # 1. Build the Flutter Web App
       - name: Build Web Release
-        run: |
-          flutter build web --release \
-          --base-href /portfolio/ \
+        run: flutter build web --release --web-renderer html --base-href /portfolio/
 
       # 2. Deploy the built files to the gh-pages branch
       - name: Deploy to GitHub Pages
