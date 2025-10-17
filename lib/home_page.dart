@@ -321,8 +321,6 @@ class _HomePageState extends State<HomePage> {
             CustomSliver(child: ExperienceSection()),
 
             SliverToBoxAdapter(child: 48.ph),
-
-            SliverToBoxAdapter(child: 500.ph),
           ],
         ),
       ),
