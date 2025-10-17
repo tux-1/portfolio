@@ -47,3 +47,4 @@ jobs:
           publish_dir: ./build/web
           # Publish to the 'gh-pages' branch
           publish_branch: gh-pages
+          force_orphan: true
