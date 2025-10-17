@@ -32,11 +32,7 @@ jobs:
         run: |
           flutter build web --release \
           --base-href /portfolio/ \
-          --web-renderer html
-        # IMPORTANT: Change /portfolio/ to your actual repository name!
-        # Using --web-renderer html is more compatible, but you can change it to 'canvaskit' 
-        # if you prefer performance over broad compatibility.
-        
+
       # 2. Deploy the built files to the gh-pages branch
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
