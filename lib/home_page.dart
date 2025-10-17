@@ -46,15 +46,28 @@ class _HomePageState extends State<HomePage> {
 
     // Get the position of the target widget relative to the entire screen
     final offset = renderBox.localToGlobal(Offset.zero);
+    final widgetHeight = renderBox.size.height;
 
-    // Calculate the actual scroll offset.
-    // We subtract the current scroll position of the controller
-    // from the target's vertical position (offset.dy).
+    // Get the visible viewport height
+    final viewportHeight = scrollController.position.viewportDimension;
+
+    // Calculate the top and bottom of the widget relative to the viewport
+    final widgetTop = offset.dy;
+    final widgetBottom = offset.dy + widgetHeight;
+
+    // Check if the widget is already fully visible
+    final isFullyVisible = widgetTop >= 0 && widgetBottom <= viewportHeight;
+
+    if (isFullyVisible) {
+      // Widget is already in view, no need to scroll
+      return;
+    }
+
+    // Calculate the actual scroll offset
     final double scrollOffset = offset.dy + scrollController.offset;
+    final double padding = viewportHeight / 3;
 
-    const double padding = 20.0;
-
-    // 4. Animate the CustomScrollView
+    // Animate the CustomScrollView
     scrollController.animateTo(
       scrollOffset - padding,
       duration: const Duration(milliseconds: 500),
@@ -308,6 +321,8 @@ class _HomePageState extends State<HomePage> {
             CustomSliver(child: ExperienceSection()),
 
             SliverToBoxAdapter(child: 48.ph),
+
+            SliverToBoxAdapter(child: 500.ph),
           ],
         ),
       ),
