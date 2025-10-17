@@ -19,8 +19,30 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
-      - uses: bluefireteam/flutter-gh-pages@v8
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Set up the Flutter environment
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          baseHref: /portfolio/
+          channel: 'stable'
+          # Optional: Use the official Flutter cache to speed up subsequent runs
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 1. Build the Flutter Web App
+      - name: Build Web Release
+        run: flutter build web --release --base-href /portfolio/
+
+      # 2. Deploy the built files to the gh-pages branch
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # Token provided automatically by GitHub
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # The directory where the Flutter build command placed the output
+          publish_dir: ./build/web
+          
