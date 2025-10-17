@@ -36,7 +36,7 @@ jobs:
       # 1. Build the Flutter Web App
       - name: Build Web Release
         run: flutter build web --release --base-href /portfolio/
-
+        
       # 2. Deploy the built files to the gh-pages branch
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -45,4 +45,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # The directory where the Flutter build command placed the output
           publish_dir: ./build/web
-          
+          # Publish to the 'gh-pages' branch
+          publish_branch: gh-pages
