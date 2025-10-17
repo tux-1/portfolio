@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:murad/portfolio/projects/models/project_model.dart';
-import 'package:murad/portfolio/projects/widgets/project_row.dart';
+import 'package:portfolio/portfolio/projects/models/project_model.dart';
+import 'package:portfolio/portfolio/projects/widgets/project_row.dart';
 
 class ProjectsSection extends StatefulWidget {
   const ProjectsSection({super.key});

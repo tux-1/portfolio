@@ -4,15 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:murad/core/config/locale_helper.dart';
-import 'package:murad/core/config/margins.dart';
-import 'package:murad/core/theme/theme_controller.dart';
-import 'package:murad/portfolio/experience/experience_section.dart';
-import 'package:murad/portfolio/projects/projects_section.dart';
-import 'package:murad/portfolio/widgets/cursor_follower.dart';
-import 'package:murad/portfolio/widgets/lift_effect.dart';
-import 'package:murad/portfolio/widgets/responsive_sliver.dart';
-import 'package:murad/portfolio/widgets/highlights_responsive_item.dart';
+import 'package:portfolio/core/config/locale_helper.dart';
+import 'package:portfolio/core/config/margins.dart';
+import 'package:portfolio/core/config/smooth_scroll_controller.dart';
+import 'package:portfolio/core/theme/theme_controller.dart';
+import 'package:portfolio/portfolio/experience/experience_section.dart';
+import 'package:portfolio/portfolio/projects/projects_section.dart';
+import 'package:portfolio/portfolio/widgets/cursor_follower.dart';
+import 'package:portfolio/portfolio/widgets/lift_effect.dart';
+import 'package:portfolio/portfolio/widgets/responsive_sliver.dart';
+import 'package:portfolio/portfolio/widgets/highlights_responsive_item.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,7 +24,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final scrollController = ScrollController();
+  final scrollController = SmoothScrollController();
+  final projectsKey = GlobalKey();
 
   Future<void> _launchUrl(String urlString) async {
     final Uri url = Uri.parse(urlString);
@@ -31,6 +33,33 @@ class _HomePageState extends State<HomePage> {
       // Optionally show a snackbar or log an error if the URL can't be launched
       throw Exception('Could not launch $url');
     }
+  }
+
+  void _scrollToTarget(GlobalKey targetKey) {
+    final RenderBox? renderBox =
+        targetKey.currentContext?.findRenderObject() as RenderBox?;
+
+    if (renderBox == null) {
+      // Safety check: key might not be mounted yet
+      return;
+    }
+
+    // Get the position of the target widget relative to the entire screen
+    final offset = renderBox.localToGlobal(Offset.zero);
+
+    // Calculate the actual scroll offset.
+    // We subtract the current scroll position of the controller
+    // from the target's vertical position (offset.dy).
+    final double scrollOffset = offset.dy + scrollController.offset;
+
+    const double padding = 20.0;
+
+    // 4. Animate the CustomScrollView
+    scrollController.animateTo(
+      scrollOffset - padding,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeOut,
+    );
   }
 
   @override
@@ -44,7 +73,6 @@ class _HomePageState extends State<HomePage> {
         content: CustomScrollView(
           controller: scrollController,
           scrollBehavior: CupertinoScrollBehavior(),
-
           slivers: [
             SliverAppBar(
               floating: true,
@@ -55,7 +83,12 @@ class _HomePageState extends State<HomePage> {
               actionsPadding: EdgeInsets.symmetric(horizontal: 12),
 
               actions: [
-                TextButton(onPressed: () {}, child: Text("Projects".tr())),
+                TextButton(
+                  onPressed: () {
+                    _scrollToTarget(projectsKey);
+                  },
+                  child: Text("Projects".tr()),
+                ),
                 ElevatedButton(
                   onPressed: () {},
                   child: Text("Let's talk".tr()),
@@ -232,6 +265,7 @@ class _HomePageState extends State<HomePage> {
             24.sliverH,
             CustomSliver(
               child: RichText(
+                key: projectsKey,
                 text: TextSpan(
                   style: textTheme.bodyLarge,
                   children: [

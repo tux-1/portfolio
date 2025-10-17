@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:murad/core/config/responsive_config.dart';
+import 'package:portfolio/core/config/responsive_config.dart';
 
 class CustomSliver extends StatefulWidget {
   const CustomSliver({super.key, required this.child});

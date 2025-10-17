@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:murad/core/config/margins.dart';
-import 'package:murad/core/config/responsive_config.dart';
+import 'package:portfolio/core/config/margins.dart';
+import 'package:portfolio/core/config/responsive_config.dart';
 
 class HighlightsResponsiveItem extends StatelessWidget {
   final Widget first;
@@ -25,10 +25,10 @@ class HighlightsResponsiveItem extends StatelessWidget {
               16.w.pw,
               Flexible(
                 flex: 2,
-                child: SizedBox(
-                  height: 250,
+                child: ConstrainedBox(
+                  constraints: constraints,
                   child: Align(
-                    alignment: AlignmentDirectional.bottomEnd,
+                    alignment: AlignmentDirectional.topCenter,
                     child: second,
                   ),
                 ),

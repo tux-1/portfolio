@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:murad/core/config/margins.dart';
-import 'package:murad/core/config/responsive_config.dart';
-import 'package:murad/portfolio/experience/models/experience_model.dart';
-import 'package:murad/portfolio/widgets/overlay_effect.dart';
+import 'package:portfolio/core/config/margins.dart';
+import 'package:portfolio/core/config/responsive_config.dart';
+import 'package:portfolio/portfolio/experience/models/experience_model.dart';
+import 'package:portfolio/portfolio/widgets/overlay_effect.dart';
 
 class ExperienceRow extends StatelessWidget {
   final ExperienceModel experience;

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:murad/core/theme/theme.dart';
-import 'package:murad/core/theme/theme_controller.dart';
-import 'package:murad/home_page.dart';
+import 'package:portfolio/core/theme/theme.dart';
+import 'package:portfolio/core/theme/theme_controller.dart';
+import 'package:portfolio/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

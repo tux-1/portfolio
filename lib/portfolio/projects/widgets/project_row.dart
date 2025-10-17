@@ -2,9 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:murad/core/config/margins.dart';
-import 'package:murad/portfolio/projects/models/project_model.dart';
-import 'package:murad/portfolio/widgets/overlay_effect.dart';
+import 'package:portfolio/core/config/margins.dart';
+import 'package:portfolio/portfolio/projects/models/project_model.dart';
+import 'package:portfolio/portfolio/widgets/overlay_effect.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProjectRow extends StatelessWidget {

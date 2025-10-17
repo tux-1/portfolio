@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:murad/home_page.dart';
+import 'package:portfolio/home_page.dart';
 
 class ProjectModel {
   final String name;
@@ -26,7 +26,7 @@ final List<ProjectModel> projects = [
     name: 'Portfolio',
     shortDescription: 'This website',
     longDescription: 'Personal portfolio website built with Flutter.',
-    codeUrl: 'https://github.com/tux-1/Portfolio',
+    codeUrl: 'https://github.com/tux-1/portfolio',
     deployUrl: null,
     preview: HomePage(),
   ),
@@ -37,6 +37,7 @@ final List<ProjectModel> projects = [
     longDescription:
         'Developed a secure attendance system that uses QR code scanning and geolocation to streamline event check-in, preventing fraudulent entries.',
     deployUrl: null,
+    codeUrl: 'https://github.com/tux-1/easy-attend',
     preview: Image.asset('assets/images/easyattend.jpg'),
   ),
   ProjectModel(
