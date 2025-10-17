@@ -24,4 +24,3 @@ jobs:
       - uses: bluefireteam/flutter-gh-pages@v8
         with:
           baseHref: /portfolio/
-          webRenderer: canvaskit

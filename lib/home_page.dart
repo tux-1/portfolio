@@ -90,7 +90,9 @@ class _HomePageState extends State<HomePage> {
                   child: Text("Projects".tr()),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _launchUrl('mailto:murad.hafez2@gmail.com');
+                  },
                   child: Text("Let's talk".tr()),
                 ),
                 TextButton(
