@@ -12,12 +12,19 @@ class CustomSliver extends StatefulWidget {
 }
 
 class _CustomSliverState extends State<CustomSliver> {
-  double horizontalPadding = 54;
+  double horizontalPadding = 160;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
+    if (size.width > ResponsiveConfig.tabletBreakpoint &&
+        horizontalPadding != 160) {
+      setState(() {
+        horizontalPadding = 160;
+      });
+    }
     if (size.width > ResponsiveConfig.mobileBreakpoint &&
+        size.width < ResponsiveConfig.tabletBreakpoint &&
         horizontalPadding != 64) {
       setState(() {
         horizontalPadding = 64;
