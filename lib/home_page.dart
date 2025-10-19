@@ -212,13 +212,14 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                     second: Container(
+                      height: 250,
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Image.asset(
                         'assets/images/easyattend.jpg',
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -247,13 +248,15 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                     second: Container(
+                      height: 250,
+
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Image.asset(
                         'assets/images/onmyway.png',
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
