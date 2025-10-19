@@ -10,10 +10,8 @@ class GradientCursorFollower extends StatefulWidget {
 }
 
 class _GradientCursorFollowerState extends State<GradientCursorFollower> {
-  
   Offset _cursorPosition = Offset.zero;
   bool _isHovering = false;
-  final double _gradientRadius = 75.0; 
 
   void _updateCursor(PointerEvent event) {
     setState(() {
@@ -35,17 +33,11 @@ class _GradientCursorFollowerState extends State<GradientCursorFollower> {
       onExit: _onExit,
       child: Stack(
         children: [
-          
           if (_isHovering)
-            
             Positioned(
-             
               child: IgnorePointer(
                 child: CustomPaint(
-                  painter: GradientPainter(
-                    center: _cursorPosition,
-                    radius: _gradientRadius,
-                  ),
+                  painter: GradientPainter(center: _cursorPosition, radius: 50),
                 ),
               ),
             ),

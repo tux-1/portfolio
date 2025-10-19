@@ -30,7 +30,7 @@ class _CustomSliverState extends State<CustomSliver> {
       });
     }
     return SliverPadding(
-      padding: EdgeInsets.symmetric(horizontal: horizontalPadding.w),
+      padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
       sliver: SliverToBoxAdapter(
         child: ConstrainedBox(
           constraints: BoxConstraints(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/core/config/margins.dart';
 import 'package:portfolio/core/config/responsive_config.dart';
 
@@ -22,7 +21,7 @@ class HighlightsResponsiveItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Flexible(flex: 4, child: first),
-              16.w.pw,
+              16.pw,
               Flexible(
                 flex: 2,
                 child: ConstrainedBox(
