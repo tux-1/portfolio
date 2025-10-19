@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class GradientCursorFollower extends StatefulWidget {
@@ -12,6 +13,9 @@ class GradientCursorFollower extends StatefulWidget {
 class _GradientCursorFollowerState extends State<GradientCursorFollower> {
   Offset _cursorPosition = Offset.zero;
   bool _isHovering = false;
+  late final platform = defaultTargetPlatform;
+  late final isMobileOS =
+      platform == TargetPlatform.android || platform == TargetPlatform.iOS;
 
   void _updateCursor(PointerEvent event) {
     setState(() {
@@ -29,15 +33,15 @@ class _GradientCursorFollowerState extends State<GradientCursorFollower> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      onHover: _updateCursor,
-      onExit: _onExit,
+      onHover: isMobileOS ? null : _updateCursor,
+      onExit: isMobileOS ? null : _onExit,
       child: Stack(
         children: [
           if (_isHovering)
             Positioned(
               child: IgnorePointer(
                 child: CustomPaint(
-                  painter: GradientPainter(center: _cursorPosition, radius: 50),
+                  painter: GradientPainter(center: _cursorPosition, radius: 55),
                 ),
               ),
             ),
@@ -67,7 +71,7 @@ class GradientPainter extends CustomPainter {
       center: Alignment.center,
       radius: 0.5, // Gradient spread
       colors: [
-        const Color.fromARGB(255, 28, 98, 156).withAlpha((255 * 0.3).floor()),
+        const Color.fromARGB(255, 28, 98, 156).withAlpha((255 * 0.35).floor()),
         const Color.fromARGB(255, 28, 98, 156).withAlpha((255 * 0).floor()),
       ],
       stops: const [0.0, 1.0],
