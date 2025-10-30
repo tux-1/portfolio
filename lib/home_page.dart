@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -67,248 +67,269 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       body: GradientCursorFollower(
-        content: CustomScrollView(
-          controller: scrollController,
-          scrollBehavior: CupertinoScrollBehavior(),
-          slivers: [
-            SliverAppBar(
-              floating: true,
-              surfaceTintColor: Colors.transparent,
-              backgroundColor: theme.colorScheme.inversePrimary,
-              title: Text('Murad Mohamed'.tr()),
+        content: KeyboardListener(
+          focusNode: FocusNode()..requestFocus(),
+          onKeyEvent: (event) {
+            if (event is KeyDownEvent || event is KeyRepeatEvent) {
+              const scrollAmount = 80.0; // pixels per key press
+              if (event.logicalKey == LogicalKeyboardKey.arrowDown) {
+                scrollController.animateTo(
+                  scrollController.offset + scrollAmount,
+                  duration: const Duration(milliseconds: 100),
+                  curve: Curves.easeOut,
+                );
+              } else if (event.logicalKey == LogicalKeyboardKey.arrowUp) {
+                scrollController.animateTo(
+                  scrollController.offset - scrollAmount,
+                  duration: const Duration(milliseconds: 100),
+                  curve: Curves.easeOut,
+                );
+              }
+            }
+          },
+          child: CustomScrollView(
+            controller: scrollController,
 
-              actionsPadding: EdgeInsets.symmetric(horizontal: 12),
+            slivers: [
+              SliverAppBar(
+                floating: true,
+                surfaceTintColor: Colors.transparent,
+                backgroundColor: theme.colorScheme.inversePrimary,
+                title: Text('Murad Mohamed'.tr()),
 
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    _scrollToTarget(projectsKey);
-                  },
-                  child: Text("Projects".tr()),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    _launchUrl('mailto:murad.hafez2@gmail.com');
-                  },
-                  child: Text("Let's talk".tr()),
-                ),
-                TextButton(
-                  onPressed: () async {
-                    await LocaleHelper.switchLocale(context);
-                  },
-                  child: Text("switch_language".tr()),
-                ),
+                actionsPadding: EdgeInsets.symmetric(horizontal: 12),
 
-                IconButton(
-                  onPressed: () {
-                    context.read<ThemeCubit>().toggleTheme();
-                  },
-                  icon: Icon(
-                    isDarkMode ? Icons.sunny : Icons.nightlight_outlined,
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      _scrollToTarget(projectsKey);
+                    },
+                    child: Text("Projects".tr()),
                   ),
-                ),
-              ],
-            ),
-            48.sliverH,
-            CustomSliver(
-              child: Text(
-                'Murad Mohamed'.tr(),
-                textAlign: TextAlign.start,
-                style: textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            8.sliverH,
-
-            CustomSliver(
-              child: Text(
-                'Mobile Applications Developer based in Maadi, Egypt'.tr(),
-                textAlign: TextAlign.start,
-                style: textTheme.headlineSmall,
-              ),
-            ),
-            12.sliverH,
-
-            CustomSliver(
-              child: Text(
-                'As an experience mobile applications developer, I create custom, high quality, and performant mobile applications that are fun to use.'
-                    .tr(),
-                textAlign: TextAlign.start,
-                style: textTheme.bodyLarge,
-              ),
-            ),
-            12.sliverH,
-            CustomSliver(
-              child: Text(
-                'If you are hiring, reach out via email!'.tr(),
-                textAlign: TextAlign.start,
-                style: textTheme.bodyLarge,
-              ),
-            ),
-            12.sliverH,
-            CustomSliver(
-              child: Wrap(
-                spacing: 6.w,
-                children: [
-                  TextButton.icon(
-                    icon: FaIcon(FontAwesomeIcons.github),
-                    onPressed: () => _launchUrl('https://github.com/tux-1'),
-                    label: Text('GitHub'),
+                  ElevatedButton(
+                    onPressed: () {
+                      _launchUrl('mailto:murad.hafez2@gmail.com');
+                    },
+                    child: Text("Let's talk".tr()),
                   ),
-                  TextButton.icon(
-                    icon: FaIcon(FontAwesomeIcons.linkedin),
-                    onPressed: () => _launchUrl(
-                      'https://www.linkedin.com/in/mourad-mohamed/',
+                  TextButton(
+                    onPressed: () async {
+                      await LocaleHelper.switchLocale(context);
+                    },
+                    child: Text("switch_language".tr()),
+                  ),
+
+                  IconButton(
+                    onPressed: () {
+                      context.read<ThemeCubit>().toggleTheme();
+                    },
+                    icon: Icon(
+                      isDarkMode ? Icons.sunny : Icons.nightlight_outlined,
                     ),
-                    label: Text('LinkedIn'),
-                  ),
-                  TextButton.icon(
-                    icon: FaIcon(Icons.email_outlined),
-                    onPressed: () =>
-                        _launchUrl('mailto:murad.hafez2@gmail.com'),
-                    label: Text('murad.hafez2@gmail.com'),
                   ),
                 ],
               ),
-            ),
+              48.sliverH,
+              CustomSliver(
+                child: Text(
+                  'Murad Mohamed'.tr(),
+                  textAlign: TextAlign.start,
+                  style: textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              8.sliverH,
 
-            24.sliverH,
-            CustomSliver(
-              child: RichText(
-                text: TextSpan(
+              CustomSliver(
+                child: Text(
+                  'Mobile Applications Developer based in Maadi, Egypt'.tr(),
+                  textAlign: TextAlign.start,
+                  style: textTheme.headlineSmall,
+                ),
+              ),
+              12.sliverH,
+
+              CustomSliver(
+                child: Text(
+                  'As an experience mobile applications developer, I create custom, high quality, and performant mobile applications that are fun to use.'
+                      .tr(),
+                  textAlign: TextAlign.start,
                   style: textTheme.bodyLarge,
+                ),
+              ),
+              12.sliverH,
+              CustomSliver(
+                child: Text(
+                  'If you are hiring, reach out via email!'.tr(),
+                  textAlign: TextAlign.start,
+                  style: textTheme.bodyLarge,
+                ),
+              ),
+              12.sliverH,
+              CustomSliver(
+                child: Wrap(
+                  spacing: 6.w,
                   children: [
-                    TextSpan(
-                      text: 'Highlights'.tr(),
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                    TextButton.icon(
+                      icon: FaIcon(FontAwesomeIcons.github),
+                      onPressed: () => _launchUrl('https://github.com/tux-1'),
+                      label: Text('GitHub'),
+                    ),
+                    TextButton.icon(
+                      icon: FaIcon(FontAwesomeIcons.linkedin),
+                      onPressed: () => _launchUrl(
+                        'https://www.linkedin.com/in/mourad-mohamed/',
                       ),
+                      label: Text('LinkedIn'),
+                    ),
+                    TextButton.icon(
+                      icon: FaIcon(Icons.email_outlined),
+                      onPressed: () =>
+                          _launchUrl('mailto:murad.hafez2@gmail.com'),
+                      label: Text('murad.hafez2@gmail.com'),
                     ),
                   ],
                 ),
               ),
-            ),
-            16.sliverH,
-            CustomSliver(
-              child: LiftEffect(
-                onPressed: () {
-                  _launchUrl('https://github.com/tux-1/easy-attend');
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(16),
-                  child: HighlightsResponsiveItem(
-                    first: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('EasyAttend', style: textTheme.bodyLarge),
-                        12.ph,
-                        Text(
-                          'A mobile application designed to simplify attendance tracking for hosts and attendees. The app enables hosts to generate a unique QR code for a specific event, which attendees can then scan to register their presence. This provides a secure, real-time, and two-factor registration system.'
-                              .tr(),
-                          style: textTheme.bodyMedium,
+
+              24.sliverH,
+              CustomSliver(
+                child: RichText(
+                  text: TextSpan(
+                    style: textTheme.bodyLarge,
+                    children: [
+                      TextSpan(
+                        text: 'Highlights'.tr(),
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ],
-                    ),
-                    second: Container(
-                      height: 250,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Image.asset(
-                        'assets/images/easyattend.jpg',
-                        fit: BoxFit.cover,
+                    ],
+                  ),
+                ),
+              ),
+              16.sliverH,
+              CustomSliver(
+                child: LiftEffect(
+                  onPressed: () {
+                    _launchUrl('https://github.com/tux-1/easy-attend');
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: HighlightsResponsiveItem(
+                      first: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('EasyAttend', style: textTheme.bodyLarge),
+                          12.ph,
+                          Text(
+                            'A mobile application designed to simplify attendance tracking for hosts and attendees. The app enables hosts to generate a unique QR code for a specific event, which attendees can then scan to register their presence. This provides a secure, real-time, and two-factor registration system.'
+                                .tr(),
+                            style: textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
+                      second: Container(
+                        height: 250,
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Image.asset(
+                          'assets/images/easyattend.jpg',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-            16.sliverH,
-            CustomSliver(
-              child: LiftEffect(
-                onPressed: () {
-                  _launchUrl('https://github.com/tux-1/on_my_way');
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(16),
-                  child: HighlightsResponsiveItem(
-                    first: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('OnMyWay', style: textTheme.bodyLarge),
-                        12.ph,
-                        Text(
-                          'An e-commerce application with a combined focus on ride-hailing and ordering food/groceries. It aims to provide a platform where users can book rides, order meals from restaurants, and purchase groceries, all within a single app.'
-                              .tr(),
-                          style: textTheme.bodyMedium,
-                        ),
-                      ],
-                    ),
-                    second: Container(
-                      height: 250,
-
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
+              16.sliverH,
+              CustomSliver(
+                child: LiftEffect(
+                  onPressed: () {
+                    _launchUrl('https://github.com/tux-1/on_my_way');
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: HighlightsResponsiveItem(
+                      first: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('OnMyWay', style: textTheme.bodyLarge),
+                          12.ph,
+                          Text(
+                            'An e-commerce application with a combined focus on ride-hailing and ordering food/groceries. It aims to provide a platform where users can book rides, order meals from restaurants, and purchase groceries, all within a single app.'
+                                .tr(),
+                            style: textTheme.bodyMedium,
+                          ),
+                        ],
                       ),
-                      child: Image.asset(
-                        'assets/images/onmyway.png',
-                        fit: BoxFit.cover,
+                      second: Container(
+                        height: 250,
+
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Image.asset(
+                          'assets/images/onmyway.png',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
 
-            24.sliverH,
-            CustomSliver(
-              child: RichText(
-                key: projectsKey,
-                text: TextSpan(
-                  style: textTheme.bodyLarge,
-                  children: [
-                    TextSpan(
-                      text: 'Projects'.tr(),
+              24.sliverH,
+              CustomSliver(
+                child: RichText(
+                  key: projectsKey,
+                  text: TextSpan(
+                    style: textTheme.bodyLarge,
+                    children: [
+                      TextSpan(
+                        text: 'Projects'.tr(),
 
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    TextSpan(
-                      text: ' — hover!'.tr(),
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: textTheme.bodyLarge?.color?.withAlpha(
-                          (255 * 0.55).floor(),
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                  ],
+                      TextSpan(
+                        text: ' — hover!'.tr(),
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: textTheme.bodyLarge?.color?.withAlpha(
+                            (255 * 0.55).floor(),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
 
-            16.sliverH,
-            CustomSliver(child: ProjectsSection()),
+              16.sliverH,
+              CustomSliver(child: ProjectsSection()),
 
-            24.sliverH,
-            CustomSliver(
-              child: Text(
-                'Experience'.tr(),
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              24.sliverH,
+              CustomSliver(
+                child: Text(
+                  'Experience'.tr(),
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            16.sliverH,
-            CustomSliver(child: ExperienceSection()),
+              16.sliverH,
+              CustomSliver(child: ExperienceSection()),
 
-            SliverToBoxAdapter(child: 48.ph),
-          ],
+              SliverToBoxAdapter(child: 48.ph),
+            ],
+          ),
         ),
       ),
     );

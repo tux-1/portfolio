@@ -41,9 +41,6 @@ class ProjectRow extends StatelessWidget {
                     }
                   },
                   label: Text('code'.tr()),
-                  style: TextButton.styleFrom(
-                    visualDensity: VisualDensity(vertical: -4),
-                  ),
                 ),
             ],
           ),
